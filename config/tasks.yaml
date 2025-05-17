@@ -1,0 +1,6 @@
+tasks:
+  fetch-duck-db-file:
+    bucket: default
+    cron: "@every 10m"
+    remote: "s3a://.../.json"
+    local: /.../.json

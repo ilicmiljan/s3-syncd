@@ -1,0 +1,7 @@
+buckets:
+  default:
+    access_key: "..."
+    secret_key: "..."
+    region: us-east-1
+#    endpoint: https://nyc3.digitaloceanspaces.com
+#    use_path_style: true
