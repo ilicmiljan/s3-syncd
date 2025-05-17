@@ -1,0 +1,28 @@
+# Ignore Git files
+.git
+.gitignore
+
+# Ignore IDE/editor files
+*.swp
+*.swo
+*.swn
+*.idea
+.vscode
+
+# Ignore test and example config files
+config/
+
+# Ignore temporary or runtime files
+tmp/
+*.log
+
+# Ignore Docker Compose files
+compose.yaml
+compose.prod.yaml
+
+# Ignore GitHub workflow files
+.github/
+
+# Ignore everything not needed for build
+Dockerfile
+docker-compose*.yaml

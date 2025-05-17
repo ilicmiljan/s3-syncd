@@ -1,0 +1,8 @@
+services:
+  s3-syncd:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    volumes:
+      - ./config:/app/config

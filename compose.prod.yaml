@@ -1,0 +1,4 @@
+services:
+  s3-syncd:
+    image: ghcr.io/ilicmiljan/s3-syncd
+    restart: unless-stopped
