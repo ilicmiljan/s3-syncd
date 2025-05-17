@@ -46,6 +46,10 @@ func ValidateTasks(tasks map[string]config.Task, buckets map[string]config.Bucke
 		} else if filepath.Base(t.Local) == "." {
 			errs = append(errs, TaskFieldError{id, "local", fmt.Sprintf("invalid local path '%s'", t.Local)})
 		}
+
+		if !t.Mode.IsValid() {
+			errs = append(errs, TaskFieldError{id, "mode", fmt.Sprintf("invalid mode '%s' (expected: copy, rename)", t.Mode)})
+		}
 	}
 
 	if len(errs) > 0 {

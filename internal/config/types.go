@@ -16,12 +16,29 @@ type Buckets struct {
 	Buckets map[string]Bucket `yaml:"buckets"`
 }
 
+type Mode string
+
+const (
+	ModeRename Mode = "rename"
+	ModeCopy   Mode = "copy"
+)
+
+func (m Mode) IsValid() bool {
+	switch m {
+	case ModeRename, ModeCopy:
+		return true
+	default:
+		return false
+	}
+}
+
 type Task struct {
 	ID       string  `yaml:"-"`
 	BucketID string  `yaml:"bucket"`
 	Cron     string  `yaml:"cron"`
 	Remote   string  `yaml:"remote"`
 	Local    string  `yaml:"local"`
+	Mode     Mode    `yaml:"mode"`
 	Bucket   *Bucket `yaml:"-"`
 }
 

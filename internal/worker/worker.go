@@ -54,8 +54,19 @@ func Execute(ctx context.Context, t config.Task) error {
 		return fmt.Errorf("%s failed to close file: %w", logPrefix, err)
 	}
 
-	if err := local.Replace(tempFile.Path, t.Local); err != nil {
-		return fmt.Errorf("%s failed to rename temp file: %w", logPrefix, err)
+	switch t.Mode {
+	case config.ModeCopy:
+		log.Printf("%s using copy mode", logPrefix)
+		if err := local.CopyAndDelete(tempFile.Path, t.Local); err != nil {
+			return fmt.Errorf("%s failed to copy and delete: %w", logPrefix, err)
+		}
+	case config.ModeRename, "":
+		log.Printf("%s using rename mode", logPrefix)
+		if err := local.Rename(tempFile.Path, t.Local); err != nil {
+			return fmt.Errorf("%s failed to rename temp file: %w", logPrefix, err)
+		}
+	default:
+		return fmt.Errorf("%s unknown mode: %s", logPrefix, t.Mode)
 	}
 
 	log.Printf("%s moved %s to %s", logPrefix, tempFile.Path, t.Local)
