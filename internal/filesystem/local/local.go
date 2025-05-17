@@ -23,9 +23,7 @@ func CreateTempFile(dir string) (*TempFile, error) {
 	}
 
 	cleanup := func() {
-		if err := file.Close(); err != nil {
-			log.Printf("failed to close temp file: %s, error: %v", path, err)
-		}
+		_ = file.Close()
 
 		if err := os.Remove(path); err == nil {
 			log.Printf("cleaned up temp file: %s", path)
