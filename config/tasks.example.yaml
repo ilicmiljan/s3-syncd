@@ -4,3 +4,4 @@ tasks:
     cron: "@every 10m"
     remote: "s3a://.../.json"
     local: /.../.json
+    mode: copy # [copy, rename]
